@@ -17,11 +17,11 @@ public class Conta {
 	private TipoConta tipoConta;
 	private String instituicaoFinanceira;
 	
-	public Conta(double saldo, TipoConta tipoConta, String instituicaoFinaceira) {
+	/*public Conta(double saldo, TipoConta tipoConta, String instituicaoFinaceira) {
 		setSaldo(saldo);
 		setTipoConta(tipoConta);
 		setInstituicaoFinanceira(instituicaoFinaceira);
-	}
+	}*/
 	
 	@Override
 	public int hashCode() {

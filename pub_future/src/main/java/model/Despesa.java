@@ -22,12 +22,12 @@ public class Despesa {
 	@ManyToOne
 	private Conta conta;
 	
-	public Despesa(double valor, LocalDate dataPagamento, LocalDate dataPagamentoEsperado, TipoDespesa tipoDespesa, Conta conta) {
+	/*public Despesa(double valor, LocalDate dataPagamento, LocalDate dataPagamentoEsperado, TipoDespesa tipoDespesa, Conta conta) {
 		setValor(valor);
 		setDataPagamento(dataPagamento);
 		setDataPagamentoEsperado(dataPagamentoEsperado);
 		setConta(conta);
-	}
+	}*/
 	
 	@Override
 	public int hashCode() {

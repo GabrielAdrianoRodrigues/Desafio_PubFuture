@@ -23,12 +23,15 @@ public class Receita {
 	private TipoReceita tipoReceita;
 	private String descricao;
 	
-	public Receita(double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado,Conta conta, TipoReceita tipoReceita, String descricao) {
+	public Receita() {
+		
+	}
+	
+	public Receita(double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado,Conta conta, String descricao) {
 		setValor(valor);
 		setDataRecebimento(dataRecebimento);
 		setDataRecebimentoEsperado(dataRecebimentoEsperado);
 		setConta(conta);
-		setTipoReceita(tipoReceita);
 		setDescricao(descricao);
 	}
 	
