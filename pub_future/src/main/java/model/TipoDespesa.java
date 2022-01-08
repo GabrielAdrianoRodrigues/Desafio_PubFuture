@@ -1,7 +1,6 @@
-package br.com.pub_future.Modelo;
+package model;
 
 public enum TipoDespesa {
-	//Resolvi ultilizar um enum para facilitar a sele��o do usuario
 	ALIMENTACAO, 
 	EDUCACAO,
 	LAZER,

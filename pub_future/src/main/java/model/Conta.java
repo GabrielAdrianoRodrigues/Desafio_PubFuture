@@ -1,9 +1,19 @@
-package br.com.pub_future.Modelo;
+package model;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Conta {
-	//Encapsulamento
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double saldo;
+	@Enumerated(EnumType.STRING)
 	private TipoConta tipoConta;
 	private String instituicaoFinanceira;
 	
@@ -13,7 +23,6 @@ public class Conta {
 		setInstituicaoFinanceira(instituicaoFinaceira);
 	}
 	
-	//Sobrescrevi os metodos hashCode e equals para que não exista objetos repetidos 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -39,8 +48,6 @@ public class Conta {
 		return true;
 	}
 	
-	//Getters and Setters
-	
 	public void setID(long id) {
 		this.id = id;
 	}
@@ -53,7 +60,6 @@ public class Conta {
 		return saldo;
 	}
 	
-	//Resolvi n�o tratar um saldo negativo pois acredito que a pessoa possa ficar devendo
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}

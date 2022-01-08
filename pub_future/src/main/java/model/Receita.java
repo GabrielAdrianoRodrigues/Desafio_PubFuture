@@ -1,17 +1,28 @@
-package br.com.pub_future.Modelo;
+package model;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Receita {
-	//Encapsulamento
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double valor;
 	private LocalDate dataRecebimento;
 	private LocalDate dataRecebimentoEsperado;
+	@ManyToOne
 	private Conta conta;
+	@Enumerated(EnumType.STRING)
 	private TipoReceita tipoReceita;
 	private String descricao;
 	
-	//Construtor
 	public Receita(double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado,Conta conta, TipoReceita tipoReceita, String descricao) {
 		setValor(valor);
 		setDataRecebimento(dataRecebimento);
@@ -21,7 +32,6 @@ public class Receita {
 		setDescricao(descricao);
 	}
 	
-	//Sobrescrevi os metodos hashCode e equals para que não exista objetos repetidos 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -46,8 +56,6 @@ public class Receita {
 			return false;
 		return true;
 	}
-	
-	//Getters and Setters
 	
 	public void setID(long id) {
 		this.id = id;

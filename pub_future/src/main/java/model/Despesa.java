@@ -1,16 +1,27 @@
-package br.com.pub_future.Modelo;
+package model;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Despesa {
-	//Encapsulamento
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double valor;
 	private LocalDate dataPagamento;
 	private LocalDate dataPagamentoEsperado;
+	@Enumerated(EnumType.STRING)
 	private TipoDespesa tipoDespesa;
+	@ManyToOne
 	private Conta conta;
 	
-	//Construtor
 	public Despesa(double valor, LocalDate dataPagamento, LocalDate dataPagamentoEsperado, TipoDespesa tipoDespesa, Conta conta) {
 		setValor(valor);
 		setDataPagamento(dataPagamento);
@@ -18,7 +29,6 @@ public class Despesa {
 		setConta(conta);
 	}
 	
-	//Sobrescrevi os metodos hashCode e equals para que não exista objetos repetidos 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,8 +53,6 @@ public class Despesa {
 			return false;
 		return true;
 	}
-	
-	//Getter and Setters
 	
 	public void setID(long id) {
 		this.id = id;
