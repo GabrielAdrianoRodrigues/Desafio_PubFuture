@@ -1,13 +1,36 @@
 package form;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import model.Conta;
+import model.Despesa;
+import model.TipoConta;
+import model.TipoDespesa;
+import repository.ContaRepository;
 
 public class DespesaForm {
 	private Long id;
 	private double valor;
 	private LocalDate dataPagamento;
 	private LocalDate dataPagamentoEsperado;
-	private String tipoDeConta;
+	private TipoConta tipoDeConta;
+	private TipoDespesa tipoDeDespesa;
+	
+	public Despesa converter(ContaRepository contaRepository) {
+		List<Conta> contas = contaRepository.findByTipoConta(tipoDeConta);
+		Conta conta = contas.get(0);
+		return new Despesa(this.valor, this.dataPagamento, this.dataPagamentoEsperado, conta , this.tipoDeDespesa);
+	}
+	
+	public TipoDespesa getTipoDeDespesa() {
+		return tipoDeDespesa;
+	}
+
+	public void setTipoDeDespesa(TipoDespesa tipoDeDespesa) {
+		this.tipoDeDespesa = tipoDeDespesa;
+	}
+
 	
 	public Long getId() {
 		return id;
@@ -41,12 +64,12 @@ public class DespesaForm {
 		this.dataPagamentoEsperado = dataPagamentoEsperado;
 	}
 	
-	public String getTipoDeConta() {
+	public TipoConta getTipoDeConta() {
 		return tipoDeConta;
 	}
 	
-	public void setTipoDeConta(String tipoDeConta) {
-		this.tipoDeConta = tipoDeConta.toUpperCase();
+	public void setTipoDeConta(TipoConta tipoDeConta) {
+		this.tipoDeConta = tipoDeConta;
 	}
 	
 	

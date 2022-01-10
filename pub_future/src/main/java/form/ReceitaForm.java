@@ -6,6 +6,7 @@ import java.util.List;
 import model.Conta;
 import model.Receita;
 import model.TipoConta;
+import model.TipoReceita;
 import repository.ContaRepository;
 
 public class ReceitaForm {
@@ -15,10 +16,12 @@ public class ReceitaForm {
 	private LocalDate dataRecebimentoEsperado;
 	private String descricao;
 	private TipoConta tipoDeConta;
+	private TipoReceita tipoDeReceita;
 	
 	public Receita converter(ContaRepository contaRepository) {
-		List<Conta> conta = contaRepository.findByTipoConta(tipoDeConta);s
-		return new Receita(this.valor, this.dataRecebimento, this.dataRecebimentoEsperado, conta, descricao);
+		List<Conta> contas = contaRepository.findByTipoConta(tipoDeConta);
+		Conta conta = contas.get(0);
+		return new Receita(this.valor, this.dataRecebimento, this.dataRecebimentoEsperado, conta, this.descricao, this.tipoDeReceita);
 	}
 	
 	public TipoConta getTipoDeConta() {

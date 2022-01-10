@@ -27,12 +27,13 @@ public class Receita {
 		
 	}
 	
-	public Receita(double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado,Conta conta, String descricao) {
+	public Receita(double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado,Conta conta, String descricao, TipoReceita tipoReceita) {
 		setValor(valor);
 		setDataRecebimento(dataRecebimento);
 		setDataRecebimentoEsperado(dataRecebimentoEsperado);
 		setConta(conta);
 		setDescricao(descricao);
+		setTipoReceita(tipoReceita);
 	}
 	
 	@Override
