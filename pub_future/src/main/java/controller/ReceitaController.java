@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -57,21 +58,32 @@ public class ReceitaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ReceitaDTO detalhar(@PathVariable Long id) {
-		Receita one = receitaRepository.getById(id);
-		return new ReceitaDTO(one);
+	public ResponseEntity<ReceitaDTO> detalhar(@PathVariable Long id) {
+		Optional<Receita> one = receitaRepository.findById(id);
+		if(one.isPresent()) {
+			return ResponseEntity.ok(new ReceitaDTO(one.get()));
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping("/{id}")
 	@Transactional
 	public ResponseEntity<ReceitaDTO> atualizacao(@PathVariable Long id,@RequestBody @Valid AtualizacaoReceita form) {
-		Receita receita = form.atualizacao(id,receitaRepository);
-		return ResponseEntity.ok(new ReceitaDTO(receita));
+		Optional<Receita> opticional = receitaRepository.findById(id);
+		if (opticional.isPresent()) {
+			Receita receita = form.atualizacao(id,receitaRepository);
+			return ResponseEntity.ok(new ReceitaDTO(receita));
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> remover(@PathVariable Long id) {
-		receitaRepository.deleteById(id);
-		return ResponseEntity.ok().build();
+		Optional<Receita> opticional = receitaRepository.findById(id);
+		if (opticional.isPresent()) {
+			receitaRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 }

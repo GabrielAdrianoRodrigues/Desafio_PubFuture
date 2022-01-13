@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -55,22 +56,33 @@ public class ContaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ContaDTO detalhar(@PathVariable Long id) {
-		Conta one = contaRepository.getById(id);
-		return new ContaDTO(one);
+	public ResponseEntity<ContaDTO> detalhar(@PathVariable Long id) {
+		Optional<Conta> one = contaRepository.findById(id);
+		if(one.isPresent()) {
+			return ResponseEntity.ok(new ContaDTO(one.get()));
+		}	
+		return ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping("/{id}")
 	@Transactional
 	public ResponseEntity<ContaDTO> atualizacao(@PathVariable Long id,@RequestBody @Valid AtualizacaoConta form) {
-		Conta conta = form.atualizacao(id,contaRepository);
-		return ResponseEntity.ok(new ContaDTO(conta));
+		Optional<Conta> optional = contaRepository.findById(id);
+		if(optional.isPresent()) {
+			Conta conta = form.atualizacao(id,contaRepository);
+			return ResponseEntity.ok(new ContaDTO(conta));
+		}	
+		return ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> remover(@PathVariable Long id) {
-		contaRepository.deleteById(id);
-		return ResponseEntity.ok().build();
+		Optional<Conta> optional = contaRepository.findById(id);
+		if(optional.isPresent()) {
+			contaRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 }

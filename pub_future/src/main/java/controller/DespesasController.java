@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -58,23 +59,34 @@ public class DespesasController {
 	}
 	
 	@GetMapping("/{id}")
-	public DespesaDTO detalhar(@PathVariable Long id) {
-		Despesa one = despesaRepository.getById(id);
-		return new DespesaDTO(one);
+	public ResponseEntity<DespesaDTO> detalhar(@PathVariable Long id) {
+		Optional<Despesa> one = despesaRepository.findById(id);
+		if (one.isPresent()) {
+			return ResponseEntity.ok(new DespesaDTO(one.get()));
+		}	
+		return ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping("/{id}")
 	@Transactional
 	public ResponseEntity<DespesaDTO> atualizacao(@PathVariable Long id,@RequestBody @Valid AtualizacaoDespesa form) {
-		Despesa despesa = form.atualizacao(id,despesaRepository);
-		return ResponseEntity.ok(new DespesaDTO(despesa));
+		Optional<Despesa> optional = despesaRepository.findById(id);
+		if (optional.isPresent()) {
+			Despesa despesa = form.atualizacao(id,despesaRepository);
+			return ResponseEntity.ok(new DespesaDTO(despesa));
+		}	
+		return ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> remover(@PathVariable Long id) {
-		despesaRepository.deleteById(id);
-		return ResponseEntity.ok().build();
+		Optional<Despesa> optional = despesaRepository.findById(id);
+		if (optional.isPresent()) {
+			despesaRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 }
