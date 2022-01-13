@@ -3,6 +3,9 @@ package form;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import model.Conta;
 import model.Despesa;
 import model.TipoConta;
@@ -11,10 +14,15 @@ import repository.ContaRepository;
 
 public class DespesaForm {
 	private Long id;
+	@NotNull @NotEmpty
 	private double valor;
+	@NotNull @NotEmpty
 	private LocalDate dataPagamento;
+	@NotNull @NotEmpty
 	private LocalDate dataPagamentoEsperado;
+	@NotNull @NotEmpty
 	private TipoConta tipoDeConta;
+	@NotNull @NotEmpty
 	private TipoDespesa tipoDeDespesa;
 	
 	public Despesa converter(ContaRepository contaRepository) {

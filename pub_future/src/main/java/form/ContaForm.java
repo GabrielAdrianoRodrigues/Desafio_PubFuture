@@ -1,12 +1,18 @@
 package form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import model.Conta;
 import model.TipoConta;
 
 public class ContaForm {
 	private Long id;
+	@NotNull @NotEmpty
 	private double saldo;
+	@NotNull @NotEmpty
 	private String instituicaoFinanceira;
+	@NotNull @NotEmpty
 	private TipoConta tipoDeConta;
 	
 	public Conta converter() {
