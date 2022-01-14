@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import model.Conta;
 import model.TipoConta;
 
+//Classe form para criar objetos para cadastrar no banco de dados
 public class ContaForm {
 	private Long id;
 	@NotNull @NotEmpty

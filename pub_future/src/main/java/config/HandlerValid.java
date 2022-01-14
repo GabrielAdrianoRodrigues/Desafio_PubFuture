@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+//Essa classe ela captura e agrupa todos os erros e transformam em ErrorFormDTOs
 @RestControllerAdvice
 public class HandlerValid {
 	

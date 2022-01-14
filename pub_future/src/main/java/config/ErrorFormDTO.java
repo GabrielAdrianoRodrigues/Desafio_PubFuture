@@ -1,5 +1,6 @@
 package config;
 
+//Essa classe e ultilizada para receber o erro informado para servidor e simplifica-lo para ser mais legivel ao programador
 public class ErrorFormDTO {
 	private String campo;
 	private String erro;

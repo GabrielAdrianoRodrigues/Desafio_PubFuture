@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+//Classe modelos seguindo o paradigma de orientação a objeto
 @Entity
 public class Receita {
-	
+	//Encapsulamento
+	//Id e gerado automaticamente
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double valor;
@@ -19,14 +21,17 @@ public class Receita {
 	private LocalDate dataRecebimentoEsperado;
 	@ManyToOne
 	private Conta conta;
+	//Sera salvo a string do ENUM
 	@Enumerated(EnumType.STRING)
 	private TipoReceita tipoReceita;
 	private String descricao;
 	
+	//Contrutor padrao, em uma aplicação spring boot e obrigatorio existir o contrutor padrao
 	public Receita() {
 		
 	}
 	
+	//Construtor para criação de objetos completos
 	public Receita(double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado,Conta conta, String descricao, TipoReceita tipoReceita) {
 		setValor(valor);
 		setDataRecebimento(dataRecebimento);
@@ -36,6 +41,7 @@ public class Receita {
 		setTipoReceita(tipoReceita);
 	}
 	
+	//Metodo responsavel por nao criar 2 objetos iguais
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,7 +49,8 @@ public class Receita {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
+	
+	//Responsavel por checar se objetos sao iguaist
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,6 +68,7 @@ public class Receita {
 		return true;
 	}
 	
+	//Getters and setter
 	public void setID(long id) {
 		this.id = id;
 	}

@@ -27,6 +27,7 @@ import model.TipoDespesa;
 import repository.ContaRepository;
 import repository.DespesaRepository;
 
+//Esta classe faz basicamente a mesma função do ContaController que ja esta documentada
 @RestController
 @RequestMapping("/Despesas")
 public class DespesasController {

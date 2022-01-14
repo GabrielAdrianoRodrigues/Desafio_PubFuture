@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import model.Despesa;
 
+//Tem a mesma função da ContaDTO que ja foi documentada
 public class DespesaDTO {
 	private Long id;
 	private double valor;

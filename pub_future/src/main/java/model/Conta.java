@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//Classe modelo como descrito e documentado em Receita
 @Entity
 public class Conta {
 	
@@ -25,6 +26,14 @@ public class Conta {
 		setSaldo(saldo);
 		setTipoConta(tipoConta);
 		setInstituicaoFinanceira(instituicaoFinaceira);
+	}
+	
+	//Metodo que recebe uma conta e faz a transferencia entre elas
+	public void transferirEntreContas(Conta conta, double valor) {
+		if (conta.getSaldo() > valor) {
+			setSaldo(this.saldo + valor);
+			conta.setSaldo(conta.getSaldo() - valor);
+		}	
 	}
 	
 	@Override
@@ -90,11 +99,5 @@ public class Conta {
 		this.instituicaoFinanceira = instituicaoFinanceira;
 	}
 	
-	public void transferirEntreContas(Conta conta, double valor) {
-		if (conta.getSaldo() > valor) {
-			setSaldo(this.saldo + valor);
-			conta.setSaldo(conta.getSaldo() - valor);
-		}	
-	}
 		
 }

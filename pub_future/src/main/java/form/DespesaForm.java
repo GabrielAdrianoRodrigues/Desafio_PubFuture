@@ -12,6 +12,7 @@ import model.TipoConta;
 import model.TipoDespesa;
 import repository.ContaRepository;
 
+//Classe form para criar objetos para cadastrar no banco de dados
 public class DespesaForm {
 	private Long id;
 	@NotNull @NotEmpty

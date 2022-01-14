@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+//Classe modelo como descrito e documentado em Receita
 @Entity
 public class Despesa {
 	

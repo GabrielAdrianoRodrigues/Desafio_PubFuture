@@ -6,9 +6,9 @@ import javax.validation.constraints.NotNull;
 import model.Conta;
 import repository.ContaRepository;
 
-
-
+//Classe responsalvel por alterar os valores que podem sofrer mudanças
 public class AtualizacaoConta {
+	//BeanValidations 
 	@NotNull @NotEmpty
 	private double saldo;
 	

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import model.Receita;
 
+//Tem a mesma função da ContaDTO que ja foi documentada
 public class ReceitaDTO {
 	private Long id;
 	private double valor;

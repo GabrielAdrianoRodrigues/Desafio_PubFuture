@@ -11,6 +11,7 @@ import model.TipoConta;
 import model.TipoReceita;
 import repository.ContaRepository;
 
+//Classe form para criar objetos para cadastrar no banco de dados
 public class ReceitaForm {
 	private Long id;
 	@NotNull @NotEmpty

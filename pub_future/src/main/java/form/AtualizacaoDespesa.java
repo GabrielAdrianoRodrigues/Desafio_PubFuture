@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import model.Despesa;
 import repository.DespesaRepository;
 
+//Classe responsalvel por alterar os valores que podem sofrer mudanças
 public class AtualizacaoDespesa {
 	@NotNull @NotEmpty
 	private double valor;
